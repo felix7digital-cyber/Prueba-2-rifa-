@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gran Rifa Millonaria - Compra tu Boleto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .animate-pulse-subtle {
+      animation: pulse-subtle 2s infinite;
+    }
+    @keyframes highlight-glow {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0px transparent; }
+      50% { transform: scale(1.15); box-shadow: 0 0 15px #f59e0b; }
+    }
+    .highlight-number {
+      animation: highlight-glow 0.8s infinite ease-in-out;
+      z-index: 20;
+    }
+  </style>
+</head>
+<body class="bg-neutral-950 text-slate-100 font-sans antialiased pb-28">
+
+  <!-- CABECERA ULTRA-COMPACTA -->
+  <header class="relative w-full border-b border-slate-800">
+    <div class="relative h-20 w-full bg-slate-900 overflow-hidden">
+      <img 
+        src="https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80" 
+        alt="" 
+        class="w-full h-full object-cover opacity-30"
+        onerror="this.src='https://via.placeholder.com/800x200/1e293b/ffffff?text=Gran+Sorteo'"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-transparent"></div>
+      
+      <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-3 z-10">
+        <span class="bg-emerald-500/90 text-neutral-950 text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider mb-0.5">
+          Sorteo Oficial
+        </span>
+        <h1 class="text-lg font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-500 tracking-tight leading-tight">
+          GRAN RIFA EXPRESS
+        </h1>
+        <p class="text-[10px] text-slate-300 font-medium mt-0.5">
+          Súper Gana • 30 Dic, 8:00 PM • <span class="text-amber-400 font-bold">Bs. 100</span>
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DE PREMIOS -->
+  <section class="pt-3 px-3 max-w-md mx-auto">
+    <div class="flex justify-between items-center mb-1.5 px-1">
+      <h2 class="text-[11px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
+        <i class="fa-solid fa-trophy"></i> Premios a Ganar
+      </h2>
+      <span class="text-[10px] text-slate-500">Toca para ver detalles</span>
+    </div>
+
+    <div class="flex gap-2.5 overflow-x-auto no-scrollbar snap-x snap-mandatory py-0.5">
+      <!-- Mini Tarjetas -->
+      <button onclick="openPrizeDetail('iphone')" class="snap-center shrink-0 w-36 bg-neutral-900 border border-amber-500/30 hover:border-amber-400 rounded-xl p-1.5 flex items-center gap-2 transition active:scale-95 text-left">
+        <div class="w-10 h-10 bg-slate-800 rounded-lg overflow-hidden shrink-0 relative">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100/334155/ffffff?text=1er'"/>
+          <span class="absolute top-0.5 left-0.5 bg-amber-500 text-neutral-950 text-[8px] font-black px-1 rounded">1º</span>
+        </div>
+        <div class="overflow-hidden">
+          <span class="text-[9px] font-bold text-amber-400 uppercase leading-none block">1er Premio</span>
+          <h3 class="font-bold text-slate-100 text-[11px] truncate leading-tight mt-0.5">iPhone 15 Pro</h3>
+        </div>
+      </button>
+
+      <button onclick="openPrizeDetail('watch')" class="snap-center shrink-0 w-36 bg-neutral-900 border border-slate-800 hover:border-slate-700 rounded-xl p-1.5 flex items-center gap-2 transition active:scale-95 text-left">
+        <div class="w-10 h-10 bg-slate-800 rounded-lg overflow-hidden shrink-0 relative">
+          <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100/334155/ffffff?text=2do'"/>
+          <span class="absolute top-0.5 left-0.5 bg-slate-300 text-neutral-950 text-[8px] font-black px-1 rounded">2º</span>
+        </div>
+        <div class="overflow-hidden">
+          <span class="text-[9px] font-bold text-slate-400 uppercase leading-none block">2do Premio</span>
+          <h3 class="font-bold text-slate-100 text-[11px] truncate leading-tight mt-0.5">Apple Watch</h3>
+        </div>
+      </button>
+
+      <button onclick="openPrizeDetail('airpods')" class="snap-center shrink-0 w-36 bg-neutral-900 border border-slate-800 hover:border-slate-700 rounded-xl p-1.5 flex items-center gap-2 transition active:scale-95 text-left">
+        <div class="w-10 h-10 bg-slate-800 rounded-lg overflow-hidden shrink-0 relative">
+          <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=200&q=80" alt="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/100/334155/ffffff?text=3er'"/>
+          <span class="absolute top-0.5 left-0.5 bg-amber-700 text-slate-100 text-[8px] font-black px-1 rounded">3º</span>
+        </div>
+        <div class="overflow-hidden">
+          <span class="text-[9px] font-bold text-amber-600 uppercase leading-none block">3er Premio</span>
+          <h3 class="font-bold text-slate-100 text-[11px] truncate leading-tight mt-0.5">AirPods Pro 2</h3>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- BARRA DE ESTADO Y LEYENDA -->
+  <section class="mt-2.5 px-3 max-w-md mx-auto">
+    <div class="bg-neutral-900 border border-slate-800 rounded-xl p-2.5 flex items-center justify-around text-xs shadow-inner">
+      <div class="flex items-center gap-1.5">
+        <span class="w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+        <span class="text-slate-300"><strong id="cnt-free" class="text-emerald-400">0</strong> Libres</span>
+      </div>
+      <div class="w-px h-4 bg-slate-800"></div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50"></span>
+        <span class="text-slate-300"><strong id="cnt-reserved" class="text-amber-400">0</strong> Reservados</span>
+      </div>
+      <div class="w-px h-4 bg-slate-800"></div>
+      <div class="flex items-center gap-1.5">
+        <span class="w-3 h-3 rounded-full bg-rose-600 shadow-sm shadow-rose-600/50"></span>
+        <span class="text-slate-300"><strong id="cnt-paid" class="text-rose-400">0</strong> Vendidos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATRIZ INTERACTIVA (GRID 10x10) -->
+  <section class="mt-3 px-3">
+    <div class="flex flex-col gap-2 mb-2 max-w-md mx-auto">
+      <div class="flex justify-between items-center px-1">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+          Elige tus Números
+        </h2>
+        <span class="text-[10px] text-slate-500">Toca para seleccionar</span>
+      </div>
+
+      <!-- BUSCADOR/FILTRO RÁPIDO DE NÚMEROS -->
+      <div class="relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+        <input 
+          type="number" 
+          id="search-number-input" 
+          placeholder="Busca tu número de la suerte (ej. 45)" 
+          min="0" 
+          max="99"
+          oninput="searchAndHighlightNumber(this.value)"
+          class="w-full bg-neutral-900 border border-slate-800 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-slate-100 rounded-xl py-2 pl-8 pr-3 text-xs outline-none transition placeholder:text-slate-600"
+        />
+      </div>
+    </div>
+
+    <!-- Grid de 100 Números -->
+    <div id="numbers-grid" class="grid grid-cols-10 gap-1.5 sm:gap-2 max-w-md mx-auto"></div>
+  </section>
+
+  <!-- SECCIÓN DE COMPRADORES CON FILTRO -->
+  <section class="mt-6 px-3 max-w-md mx-auto">
+    <div class="flex flex-col gap-2 mb-2.5">
+      <div class="flex justify-between items-center px-1">
+        <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-users text-amber-400"></i> Lista de Participantes 👥
+        </h2>
+        <span class="text-[10px] text-slate-500">Boletos ocupados</span>
+      </div>
+
+      <!-- FILTRO DE PARTICIPANTES -->
+      <div class="relative">
+        <i class="fa-solid fa-filter absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+        <input 
+          type="text" 
+          id="search-participant-input" 
+          placeholder="Filtrar por nombre, cédula o # número..." 
+          oninput="filterParticipantsTable(this.value)"
+          class="w-full bg-neutral-900 border border-slate-800 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-slate-100 rounded-xl py-2 pl-8 pr-3 text-xs outline-none transition placeholder:text-slate-600"
+        />
+      </div>
+    </div>
+
+    <div class="bg-neutral-900 border border-slate-800 rounded-xl overflow-hidden shadow-lg">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-neutral-950/80 text-[10px] text-slate-400 uppercase border-b border-slate-800">
+              <th class="p-2.5 font-semibold">Participante</th>
+              <th class="p-2.5 font-semibold text-center">Números</th>
+              <th class="p-2.5 font-semibold text-right">Estado</th>
+            </tr>
+          </thead>
+          <tbody id="buyers-table-body" class="divide-y divide-slate-800/60 text-xs"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="mt-8 mb-4 text-center px-4">
+    <button onclick="openTermsModal()" class="text-xs text-slate-400 hover:text-amber-400 underline underline-offset-4 transition inline-flex items-center gap-1.5">
+      <i class="fa-solid fa-file-contract"></i>
+      <span>Términos y Condiciones del Sorteo</span>
+    </button>
+    <p class="text-[10px] text-slate-600 mt-2">© 2026 Gran Rifa Express - Sistema Seguro de Reservas</p>
+  </footer>
+
+  <!-- BARRA INFERIOR FLOTANTE -->
+  <div id="sticky-bar" class="fixed bottom-0 left-0 right-0 bg-neutral-900/95 border-t border-slate-800 p-3 backdrop-blur-md transition-transform duration-300 translate-y-full z-40">
+    <div class="max-w-md mx-auto flex flex-col gap-2">
+      <div class="flex justify-between items-center text-xs px-1">
+        <div class="flex items-center gap-2">
+          <span class="text-slate-300">
+            Seleccionados: <strong id="selected-count" class="text-emerald-400 font-bold">0</strong>
+          </span>
+          <!-- BOTÓN LIMPIAR / DESMARCAR TODOS -->
+          <button onclick="clearAllSelections()" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-slate-300 px-2 py-0.5 rounded transition flex items-center gap-1">
+            <i class="fa-solid fa-trash-can text-[9px]"></i> Limpiar
+          </button>
+        </div>
+        <span class="text-slate-300">
+          Total: <strong id="selected-total" class="text-amber-400 font-bold text-sm">Bs. 0</strong>
+        </span>
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="openReserveModal()" class="flex-1 py-3 px-3 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-lg shadow-amber-900/20 flex items-center justify-center gap-1.5 transition active:scale-95">
+          <i class="fa-regular fa-clock text-sm"></i> Reservar
+        </button>
+
+        <button onclick="openBuyModal()" class="flex-[1.2] py-3 px-3 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-xs rounded-xl shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-1.5 animate-pulse-subtle transition active:scale-95">
+          <i class="fa-solid fa-ticket text-sm"></i> Comprar Ahora
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTIFICACIÓN DE ESTADO (TOAST) -->
+  <div id="status-toast" class="fixed top-5 left-1/2 -translate-x-1/2 w-11/12 max-w-md z-50 transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px]">
+    <div id="status-toast-bg" class="p-3.5 rounded-xl border shadow-xl flex items-center gap-3 backdrop-blur-md">
+      <span id="status-toast-icon" class="text-xl shrink-0"></span>
+      <p id="status-toast-msg" class="text-xs font-semibold text-slate-100 leading-snug"></p>
+    </div>
+  </div>
+
+  <!-- MODAL DE FICHA TÉCNICA -->
+  <div id="modal-prize-detail" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+    <div id="modal-prize-detail-card" class="bg-neutral-900 border border-slate-800 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-transform duration-300 scale-95 m-auto max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span id="prize-badge-tag" class="bg-amber-500 text-neutral-950 text-xs font-black px-2 py-0.5 rounded shadow">🏆 1er Lugar</span>
+          <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Ficha Técnica</h3>
+        </div>
+        <button onclick="closeModal('modal-prize-detail')" class="text-slate-400 hover:text-slate-100 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 h-48 w-full bg-neutral-950 rounded-xl overflow-hidden border border-slate-800 relative">
+        <img id="prize-image" src="" alt="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300/1e293b/ffffff?text=Premio+Oficial'"/>
+      </div>
+
+      <div class="mt-3">
+        <h3 id="prize-title" class="text-lg font-black text-slate-100 leading-tight">--</h3>
+        <p id="prize-subtitle" class="text-xs text-amber-400 font-semibold mt-0.5">--</p>
+      </div>
+
+      <div class="mt-4 space-y-2">
+        <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800/80 pb-1">Especificaciones y Detalles</h4>
+        <div class="bg-neutral-950 p-3 rounded-xl border border-slate-800 space-y-2 text-xs">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-500 font-medium">Modelo / Tamaño:</span>
+            <span id="prize-spec-model" class="font-semibold text-slate-200">--</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-slate-900 pt-1.5">
+            <span class="text-slate-500 font-medium">Estado del Producto:</span>
+            <span id="prize-spec-state" class="font-semibold text-emerald-400">--</span>
+          </div>
+          <div class="flex justify-between items-start border-t border-slate-900 pt-1.5">
+            <span class="text-slate-500 font-medium shrink-0">Características:</span>
+            <span id="prize-spec-features" class="font-semibold text-slate-300 text-right pl-2">--</span>
+          </div>
+          <div class="flex justify-between items-center border-t border-slate-900 pt-1.5">
+            <span class="text-slate-500 font-medium">Garantía / Entrega:</span>
+            <span id="prize-spec-warranty" class="font-semibold text-amber-300">--</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-5 pt-3 border-t border-slate-800">
+        <button onclick="closeModal('modal-prize-detail')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs rounded-xl transition flex items-center justify-center gap-2">
+          <i class="fa-solid fa-arrow-left"></i> Volver al Tablero
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <div id="modal-terms" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+    <div id="modal-terms-card" class="bg-neutral-900 border border-slate-800 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-transform duration-300 scale-95 m-auto max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center">
+            <i class="fa-solid fa-scale-balanced text-sm"></i>
+          </div>
+          <h3 class="text-sm font-bold text-slate-100">Términos y Condiciones</h3>
+        </div>
+        <button onclick="closeModal('modal-terms')" class="text-slate-400 hover:text-slate-100 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-3 text-xs text-slate-300 leading-relaxed">
+        <div class="bg-neutral-950 p-3 rounded-xl border border-slate-800 space-y-1">
+          <h4 class="font-bold text-amber-400 text-[11px] uppercase">1. Metodología del Sorteo</h4>
+          <p class="text-[11px] text-slate-400">Basado en la Lotería del Zulia (Súper Gana). Ganarán las terminales de 2 dígitos (00 al 99).</p>
+        </div>
+        <div class="bg-neutral-950 p-3 rounded-xl border border-slate-800 space-y-1">
+          <h4 class="font-bold text-amber-400 text-[11px] uppercase">2. Políticas de Reserva</h4>
+          <p class="text-[11px] text-slate-400">Reservas válidas por un lapso máximo de 24 horas. Si no se envía el comprobante, el número se libera.</p>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-slate-800">
+        <button onclick="closeModal('modal-terms')" class="w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs rounded-lg transition">
+          Entendido
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE RESERVA CON TEMPORIZADOR VISIBLE -->
+  <div id="modal-reserve" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+    <div id="modal-reserve-card" class="bg-neutral-900 border border-slate-800 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-transform duration-300 scale-95 m-auto max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center">
+            <i class="fa-regular fa-clock text-base"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-100">Formulario de Reserva Temporal</h3>
+            <p class="text-[10px] text-amber-400 font-medium">Tus números se guardarán en revisión.</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-reserve')" class="text-slate-400 hover:text-slate-100 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- BANNER DE TEMPORIZADOR COUNTDOWN DE RESERVA -->
+      <div class="mt-3 bg-amber-500/10 border border-amber-500/30 rounded-xl p-2.5 flex items-center justify-between text-amber-300">
+        <span class="text-[11px] font-semibold flex items-center gap-1.5">
+          <i class="fa-solid fa-hourglass-half animate-spin text-xs"></i> Plazo de pago:
+        </span>
+        <span id="reserve-timer" class="font-mono font-bold text-xs bg-neutral-950 px-2 py-0.5 rounded border border-amber-500/40">23:59:59</span>
+      </div>
+
+      <form onsubmit="submitReserveForm(event)" class="mt-3 space-y-4">
+        <div class="bg-neutral-950 p-3 rounded-xl border border-slate-800 space-y-1 text-xs">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Números elegidos:</span>
+            <strong id="reserve-summary-numbers" class="text-amber-400 font-bold">--</strong>
+          </div>
+          <div class="flex justify-between items-center border-t border-slate-800/60 pt-1 mt-1">
+            <span class="text-slate-400">Total a pagar luego:</span>
+            <strong id="reserve-summary-total" class="text-slate-200 font-bold">Bs. 0</strong>
+          </div>
+        </div>
+
+        <div class="space-y-2.5">
+          <div>
+            <label for="reserve-name" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">1. Nombre y Apellido *</label>
+            <input type="text" id="reserve-name" required placeholder="Ej. Juan Pérez" class="w-full bg-neutral-950 border border-slate-800 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+          <div>
+            <label for="reserve-id" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">2. Cédula de Identidad *</label>
+            <input type="text" id="reserve-id" required placeholder="Ej. V-20123456" class="w-full bg-neutral-950 border border-slate-800 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+          <div>
+            <label for="reserve-phone" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">3. Número de WhatsApp *</label>
+            <input type="tel" id="reserve-phone" required placeholder="Ej. 04121234567" class="w-full bg-neutral-950 border border-slate-800 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+        </div>
+
+        <div id="reserve-error" class="hidden text-rose-400 text-[11px] font-semibold text-center">
+          Por favor, llena los 3 campos obligatorios.
+        </div>
+
+        <div class="pt-2 border-t border-slate-800">
+          <button type="submit" class="w-full py-3 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-extrabold text-xs rounded-xl shadow-lg shadow-amber-900/30 flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fa-brands fa-whatsapp text-base"></i> Reservar por WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DE COMPRA DIRECTA -->
+  <div id="modal-buy" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+    <div id="modal-buy-card" class="bg-neutral-900 border border-slate-800 w-full max-w-md rounded-2xl p-5 shadow-2xl transition-transform duration-300 scale-95 m-auto max-h-[85vh] overflow-y-auto">
+      <div class="flex justify-between items-center pb-3 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+            <i class="fa-solid fa-building-columns text-sm"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-100">Pago Móvil Directo</h3>
+            <p class="text-[10px] text-emerald-400 font-medium">Realiza tu pago y envía tu comprobante.</p>
+          </div>
+        </div>
+        <button onclick="closeModal('modal-buy')" class="text-slate-400 hover:text-slate-100 p-1">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="submitBuyForm(event)" class="mt-4 space-y-4">
+        <div class="space-y-1.5">
+          <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block">Datos de Pago Móvil del Vendedor</span>
+          <div class="bg-neutral-950 p-3 rounded-xl border-2 border-emerald-500/80 shadow-lg shadow-emerald-900/20 space-y-2 text-xs">
+            <div class="flex justify-between items-center">
+              <div>
+                <span class="text-[9px] text-slate-500 uppercase font-medium block">Banco</span>
+                <span class="text-slate-200 font-semibold text-[11px]">0102 - Banco de Venezuela</span>
+              </div>
+              <button type="button" onclick="copyToClipboard('0102', 'Banco')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-1 rounded text-[10px] font-medium transition flex items-center gap-1">
+                <i class="fa-regular fa-copy"></i> Copiar
+              </button>
+            </div>
+            <div class="flex justify-between items-center border-t border-slate-900 pt-1.5">
+              <div>
+                <span class="text-[9px] text-slate-500 uppercase font-medium block">Cédula del Vendedor</span>
+                <span class="text-slate-200 font-semibold text-[11px]">V-20.123.456</span>
+              </div>
+              <button type="button" onclick="copyToClipboard('20123456', 'Cédula')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-1 rounded text-[10px] font-medium transition flex items-center gap-1">
+                <i class="fa-regular fa-copy"></i> Copiar
+              </button>
+            </div>
+            <div class="flex justify-between items-center border-t border-slate-900 pt-1.5">
+              <div>
+                <span class="text-[9px] text-slate-500 uppercase font-medium block">Teléfono Destino</span>
+                <span class="text-slate-200 font-semibold text-[11px]">0412-1234567</span>
+              </div>
+              <button type="button" onclick="copyToClipboard('04121234567', 'Teléfono')" class="bg-slate-800 hover:bg-slate-700 text-amber-400 px-2 py-1 rounded text-[10px] font-medium transition flex items-center gap-1">
+                <i class="fa-regular fa-copy"></i> Copiar
+              </button>
+            </div>
+          </div>
+          <div id="copy-toast" class="text-center text-emerald-400 text-[11px] font-semibold h-3 opacity-0 transition-opacity">¡Copiado con éxito!</div>
+        </div>
+
+        <div class="bg-neutral-950 p-3 rounded-xl border border-slate-800 space-y-1 text-xs">
+          <div class="flex justify-between items-center">
+            <span class="text-slate-400">Números comprados:</span>
+            <strong id="buy-summary-numbers" class="text-emerald-400 font-bold">--</strong>
+          </div>
+          <div class="flex justify-between items-center border-t border-slate-800/60 pt-1 mt-1">
+            <span class="text-slate-400">Monto exacto transferido:</span>
+            <strong id="buy-summary-total" class="text-amber-400 font-extrabold text-sm">Bs. 0</strong>
+          </div>
+        </div>
+
+        <div class="space-y-2.5">
+          <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Datos del Comprador</span>
+          <div>
+            <label for="buy-name" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">1. Nombre y Apellido *</label>
+            <input type="text" id="buy-name" required placeholder="Ej. Juan Pérez" class="w-full bg-neutral-950 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+          <div>
+            <label for="buy-id" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">2. Cédula de Identidad *</label>
+            <input type="text" id="buy-id" required placeholder="Ej. V-20123456" class="w-full bg-neutral-950 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+          <div>
+            <label for="buy-phone" class="block text-slate-400 font-medium mb-1 text-[10px] uppercase">3. Número de WhatsApp *</label>
+            <input type="tel" id="buy-phone" required placeholder="Ej. 04121234567" class="w-full bg-neutral-950 border border-slate-800 focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-100 rounded-lg py-2 px-3 text-xs outline-none transition">
+          </div>
+        </div>
+
+        <div id="buy-error" class="hidden text-rose-400 text-[11px] font-semibold text-center">
+          Por favor, llena los 3 campos obligatorios.
+        </div>
+
+        <div class="pt-2 border-t border-slate-800">
+          <button type="submit" class="w-full py-3 bg-emerald-500 hover:bg-emerald-400 text-neutral-950 font-extrabold text-xs rounded-xl shadow-lg shadow-emerald-900/30 flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fa-brands fa-whatsapp text-base"></i> Enviar Comprobante por WhatsApp
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const TICKET_PRICE = 100;
+    const WHATSAPP_PHONE = "584121234567";
+
+    const prizeDetailsData = {
+      iphone: {
+        badge: "🏆 1er Lugar",
+        badgeBg: "bg-amber-500 text-neutral-950",
+        title: "iPhone 15 Pro Max",
+        subtitle: "Smartphone de Última Generación",
+        image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80",
+        model: "256GB / Titanio Natural",
+        state: "Totalmente Nuevo - Sellado",
+        features: "Pantalla Super Retina XDR 6.7\", Chip A17 Pro.",
+        warranty: "1 Año de Garantía Oficial Apple."
+      },
+      watch: {
+        badge: "🥈 2do Lugar",
+        badgeBg: "bg-slate-300 text-neutral-950",
+        title: "Apple Watch Series 9",
+        subtitle: "Smartwatch Deportivo Avanzado",
+        image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=600&q=80",
+        model: "Caja de Aluminio 45mm",
+        state: "Totalmente Nuevo - Sellado",
+        features: "Pantalla Retina Siempre Activa, Sensores de Salud.",
+        warranty: "Garantía de Fábrica."
+      },
+      airpods: {
+        badge: "🥉 3er Lugar",
+        badgeBg: "bg-amber-700 text-slate-100",
+        title: "AirPods Pro 2da Gen",
+        subtitle: "Auriculares Inalámbricos Premium",
+        image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?auto=format&fit=crop&w=600&q=80",
+        model: "Estuche MagSafe (USB-C)",
+        state: "Totalmente Nuevo - Sellado",
+        features: "Cancelación Activa de Ruido, Audio Espacial.",
+        warranty: "Garantía Oficial Apple."
+      }
+    };
+
+    const participantsList = [
+      { name: "Maria G.", id: "V-18.***.456", numbers: ["#05", "#18"], status: "reserved" },
+      { name: "Carlos R.", id: "V-21.***.890", numbers: ["#01", "#02"], status: "paid" },
+      { name: "Ana M.", id: "V-15.***.123", numbers: ["#08", "#10"], status: "paid" },
+      { name: "Jose L.", id: "V-24.***.789", numbers: ["#33", "#45"], status: "reserved" },
+      { name: "Elena P.", id: "V-19.***.345", numbers: ["#15", "#20", "#21"], status: "paid" },
+      { name: "David K.", id: "V-22.***.678", numbers: ["#60", "#77"], status: "reserved" },
+      { name: "Sofía T.", id: "V-17.***.901", numbers: ["#80", "#85", "#90"], status: "paid" }
+    ];
+
+    const reservedNumbers = [5, 12, 18, 33, 45, 60, 77, 88, 92];
+    const paidNumbers = [1, 2, 8, 10, 15, 20, 21, 22, 30, 40, 50, 55, 66, 70, 71, 72, 80, 85, 90, 99];
+    
+    let selectedNumbers = new Set();
+    let toastTimeout = null;
+    let countdownInterval = null;
+
+    function initGrid() {
+      const gridContainer = document.getElementById('numbers-grid');
+      gridContainer.innerHTML = '';
+
+      let freeCount = 0;
+      let reservedCount = 0;
+      let paidCount = 0;
+
+      for (let i = 0; i < 100; i++) {
+        const numStr = i.toString().padStart(2, '0');
+        const button = document.createElement('button');
+        
+        button.id = `btn-num-${numStr}`;
+        button.setAttribute('data-num', numStr);
+        button.className = "h-11 w-full rounded-lg text-base font-extrabold transition flex items-center justify-center relative select-none ";
+
+        if (paidNumbers.includes(i)) {
+          button.className += "bg-rose-950/40 text-rose-700 border border-rose-900/40 active:scale-95";
+          button.innerHTML = `<span>${numStr}</span>`;
+          button.onclick = () => showStatusNotification('paid', numStr);
+          paidCount++;
+        } else if (reservedNumbers.includes(i)) {
+          button.className += "bg-amber-950/40 text-amber-500 border border-amber-800/40 active:scale-95 flex-col gap-0";
+          button.innerHTML = `
+            <span class="leading-none">${numStr}</span>
+            <i class="fa-regular fa-clock text-[9px] -mt-0.5"></i>
+          `;
+          button.onclick = () => showStatusNotification('reserved', numStr);
+          reservedCount++;
+        } else {
+          button.className += "bg-neutral-900 text-emerald-400 border border-emerald-900/50 hover:border-emerald-500/80 active:scale-95";
+          button.innerHTML = `<span>${numStr}</span>`;
+          button.onclick = () => toggleSelectNumber(numStr, button);
+          freeCount++;
+        }
+
+        gridContainer.appendChild(button);
+      }
+
+      document.getElementById('cnt-free').innerText = freeCount;
+      document.getElementById('cnt-reserved').innerText = reservedCount;
+      document.getElementById('cnt-paid').innerText = paidCount;
+    }
+
+    // BUSCADOR / HIGHLIGHT DE NÚMEROS EN LA MATRIZ
+    function searchAndHighlightNumber(value) {
+      document.querySelectorAll('.highlight-number').forEach(el => el.classList.remove('highlight-number'));
+
+      if (value === '' || value === null) return;
+      let numVal = parseInt(value, 10);
+      if (isNaN(numVal) || numVal < 0 || numVal > 99) return;
+
+      const targetStr = numVal.toString().padStart(2, '0');
+      const targetBtn = document.getElementById(`btn-num-${targetStr}`);
+
+      if (targetBtn) {
+        targetBtn.classList.add('highlight-number');
+        targetBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // RENDERIZAR TABLA DE PARTICIPANTES CON SOPORTE DE FILTRO
+    function renderBuyersTable(filterText = '') {
+      const tbody = document.getElementById('buyers-table-body');
+      tbody.innerHTML = '';
+
+      const cleanFilter = filterText.toLowerCase().trim();
+
+      const filteredList = participantsList.filter(item => {
+        const matchesName = item.name.toLowerCase().includes(cleanFilter);
+        const matchesId = item.id.toLowerCase().includes(cleanFilter);
+        const matchesNumbers = item.numbers.some(n => n.toLowerCase().includes(cleanFilter));
+        return matchesName || matchesId || matchesNumbers;
+      });
+
+      if (filteredList.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="3" class="p-4 text-center text-slate-500 text-xs">
+              No se encontraron coincidencias para "${filterText}"
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      filteredList.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-neutral-950/50 transition";
+
+        const isReserved = item.status === 'reserved';
+        const badgeHTML = isReserved 
+          ? `<span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20">Reservado</span>`
+          : `<span class="inline-block px-2 py-0.5 rounded-full text-[9px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/20">Pagado</span>`;
+
+        tr.innerHTML = `
+          <td class="p-2.5">
+            <div class="font-bold text-slate-200">${item.name}</div>
+            <div class="text-[10px] text-slate-500 font-mono">${item.id}</div>
+          </td>
+          <td class="p-2.5 text-center font-bold text-slate-300 font-mono">
+            ${item.numbers.join(', ')}
+          </td>
+          <td class="p-2.5 text-right">
+            ${badgeHTML}
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterParticipantsTable(value) {
+      renderBuyersTable(value);
+    }
+
+    // TOGGLE SELECCIÓN CON CHECKMARK VISUAL
+    function toggleSelectNumber(numStr, btnElement) {
+      if (selectedNumbers.has(numStr)) {
+        selectedNumbers.delete(numStr);
+        btnElement.classList.remove('bg-emerald-500', 'text-neutral-950', 'ring-2', 'ring-emerald-400', 'shadow-lg', 'shadow-emerald-500/30');
+        btnElement.classList.add('bg-neutral-900', 'text-emerald-400');
+        btnElement.innerHTML = `<span>${numStr}</span>`;
+      } else {
+        selectedNumbers.add(numStr);
+        btnElement.classList.remove('bg-neutral-900', 'text-emerald-400');
+        btnElement.classList.add('bg-emerald-500', 'text-neutral-950', 'ring-2', 'ring-emerald-400', 'shadow-lg', 'shadow-emerald-500/30');
+        // Agregar icono check
+        btnElement.innerHTML = `
+          <div class="flex items-center gap-0.5 leading-none">
+            <span>${numStr}</span>
+            <i class="fa-solid fa-check text-[10px]"></i>
+          </div>
+        `;
+      }
+
+      updateStickyBar();
+    }
+
+    // LIMPIAR TODA LA SELECCIÓN
+    function clearAllSelections() {
+      selectedNumbers.forEach(numStr => {
+        const btn = document.getElementById(`btn-num-${numStr}`);
+        if (btn) {
+          btn.classList.remove('bg-emerald-500', 'text-neutral-950', 'ring-2', 'ring-emerald-400', 'shadow-lg', 'shadow-emerald-500/30');
+          btn.classList.add('bg-neutral-900', 'text-emerald-400');
+          btn.innerHTML = `<span>${numStr}</span>`;
+        }
+      });
+      selectedNumbers.clear();
+      updateStickyBar();
+    }
+
+    function updateStickyBar() {
+      const stickyBar = document.getElementById('sticky-bar');
+      const countElem = document.getElementById('selected-count');
+      const totalElem = document.getElementById('selected-total');
+
+      const count = selectedNumbers.size;
+      const total = count * TICKET_PRICE;
+
+      countElem.innerText = count;
+      totalElem.innerText = `Bs. ${total.toLocaleString('es-VE')}`;
+
+      if (count > 0) {
+        stickyBar.classList.remove('translate-y-full');
+      } else {
+        stickyBar.classList.add('translate-y-full');
+      }
+    }
+
+    function openPrizeDetail(prizeKey) {
+      const data = prizeDetailsData[prizeKey];
+      if (!data) return;
+
+      const badgeElem = document.getElementById('prize-badge-tag');
+      badgeElem.className = `${data.badgeBg} text-xs font-black px-2 py-0.5 rounded shadow`;
+      badgeElem.innerText = data.badge;
+
+      document.getElementById('prize-image').src = data.image;
+      document.getElementById('prize-title').innerText = data.title;
+      document.getElementById('prize-subtitle').innerText = data.subtitle;
+      document.getElementById('prize-spec-model').innerText = data.model;
+      document.getElementById('prize-spec-state').innerText = data.state;
+      document.getElementById('prize-spec-features').innerText = data.features;
+      document.getElementById('prize-spec-warranty').innerText = data.warranty;
+
+      const modal = document.getElementById('modal-prize-detail');
+      const card = document.getElementById('modal-prize-detail-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function showStatusNotification(statusType, numberStr) {
+      const toast = document.getElementById('status-toast');
+      const toastBg = document.getElementById('status-toast-bg');
+      const icon = document.getElementById('status-toast-icon');
+      const msg = document.getElementById('status-toast-msg');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+
+      if (statusType === 'reserved') {
+        toastBg.className = "p-3.5 rounded-xl border shadow-xl flex items-center gap-3 backdrop-blur-md bg-amber-950/90 border-amber-800/80 text-amber-200";
+        icon.innerText = "⚠️";
+        msg.innerText = `El número ${numberStr} está actualmente RESERVADO y en verificación.`;
+      } else if (statusType === 'paid') {
+        toastBg.className = "p-3.5 rounded-xl border shadow-xl flex items-center gap-3 backdrop-blur-md bg-rose-950/90 border-rose-800/80 text-rose-200";
+        icon.innerText = "❌";
+        msg.innerText = `El número ${numberStr} ya fue VENDIDO y no se encuentra disponible.`;
+      }
+
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-20px]');
+      }, 3500);
+    }
+
+    function startReserveCountdown() {
+      if (countdownInterval) clearInterval(countdownInterval);
+      let duration = 24 * 60 * 60; // 24 horas en segundos
+
+      const timerElem = document.getElementById('reserve-timer');
+
+      countdownInterval = setInterval(() => {
+        let hours = Math.floor(duration / 3600);
+        let minutes = Math.floor((duration % 3600) / 60);
+        let seconds = duration % 60;
+
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        if (timerElem) {
+          timerElem.innerText = `${hours}:${minutes}:${seconds}`;
+        }
+
+        if (--duration < 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+    }
+
+    function openTermsModal() {
+      const modal = document.getElementById('modal-terms');
+      const card = document.getElementById('modal-terms-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function openReserveModal() {
+      if (selectedNumbers.size === 0) return;
+      document.getElementById('reserve-error').classList.add('hidden');
+
+      const numbersArray = Array.from(selectedNumbers).sort();
+      const total = numbersArray.length * TICKET_PRICE;
+
+      document.getElementById('reserve-summary-numbers').innerText = numbersArray.join(', ');
+      document.getElementById('reserve-summary-total').innerText = `Bs. ${total.toLocaleString('es-VE')}`;
+
+      startReserveCountdown();
+
+      const modal = document.getElementById('modal-reserve');
+      const card = document.getElementById('modal-reserve-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function openBuyModal() {
+      if (selectedNumbers.size === 0) return;
+      document.getElementById('buy-error').classList.add('hidden');
+
+      const numbersArray = Array.from(selectedNumbers).sort();
+      const total = numbersArray.length * TICKET_PRICE;
+
+      document.getElementById('buy-summary-numbers').innerText = numbersArray.join(', ');
+      document.getElementById('buy-summary-total').innerText = `Bs. ${total.toLocaleString('es-VE')}`;
+
+      const modal = document.getElementById('modal-buy');
+      const card = document.getElementById('modal-buy-card');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      const card = document.getElementById(`${modalId}-card`);
+      if (card) {
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+      }
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      if (modalId === 'modal-reserve' && countdownInterval) {
+        clearInterval(countdownInterval);
+      }
+    }
+
+    function submitReserveForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('reserve-name').value.trim();
+      const id = document.getElementById('reserve-id').value.trim();
+      const phone = document.getElementById('reserve-phone').value.trim();
+      const errorDiv = document.getElementById('reserve-error');
+
+      if (!name || !id || !phone) {
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+      errorDiv.classList.add('hidden');
+
+      const numbersArray = Array.from(selectedNumbers).sort();
+      const text = `¡Hola! Mi nombre es ${name}, C.I: ${id}. Reservé los números: ${numbersArray.join(', ')}. Enviar datos para realizar el pago luego.`;
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+      closeModal('modal-reserve');
+    }
+
+    function submitBuyForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('buy-name').value.trim();
+      const id = document.getElementById('buy-id').value.trim();
+      const phone = document.getElementById('buy-phone').value.trim();
+      const errorDiv = document.getElementById('buy-error');
+
+      if (!name || !id || !phone) {
+        errorDiv.classList.add('hidden'); // Fix toggle
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+      errorDiv.classList.add('hidden');
+
+      const numbersArray = Array.from(selectedNumbers).sort();
+      const text = `¡Hola! Mi nombre es ${name}, C.I: ${id}. Compré los números: ${numbersArray.join(', ')}. Adjunto mi comprobante de Pago Móvil.`;
+      window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(text)}`, '_blank');
+      closeModal('modal-buy');
+    }
+
+    function copyToClipboard(text, label) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const input = document.createElement('input');
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+      }
+
+      const toast = document.getElementById('copy-toast');
+      toast.innerText = `¡${label} copiado con éxito!`;
+      toast.classList.remove('opacity-0');
+      setTimeout(() => toast.classList.add('opacity-0'), 2000);
+    }
+
+    window.onload = function() {
+      initGrid();
+      renderBuyersTable();
+    };
+  </script>
+</body>
+</html>
+
+
