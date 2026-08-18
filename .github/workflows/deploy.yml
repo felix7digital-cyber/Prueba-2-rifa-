@@ -18,6 +18,6 @@ jobs:
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: "7df05fa086835c1b86c7457341bdd2fa"
           projectName: prueba-2-rifa
           directory: .
-
