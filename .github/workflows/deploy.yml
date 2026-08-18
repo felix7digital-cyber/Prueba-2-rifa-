@@ -15,9 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Deploy
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: "7df05fa086835c1b86c7457341bdd2fa"
-          projectName: prueba-2-rifa
-          directory: .
+          command: pages deploy . --project-name=prueba-2-rifa
