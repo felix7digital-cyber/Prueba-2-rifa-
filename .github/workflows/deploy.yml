@@ -8,9 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
     name: Deploy to Cloudflare Pages
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +16,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: "7df05fa086835c1b86c7457341bdd2fa"
-          projectName: prueba-2-rifa
-          directory: .
-
+          projectName: "prueba-2-rifa"
+          directory: "."
